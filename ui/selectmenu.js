@@ -70,7 +70,7 @@ return $.widget( "ui.selectmenu", {
 			tabindex = this.element.attr( "tabindex" );
 
 		// Associate existing label with the new button
-		this.label = $( "label[for='" + this.ids.element + "']" ).attr( "for", this.ids.button );
+		this.label = $( "label[for='" + this.ids.element + "']" );
 		this._on( this.label, {
 			click: function( event ) {
 				this.button.focus();
@@ -90,7 +90,8 @@ return $.widget( "ui.selectmenu", {
 			"aria-expanded": "false",
 			"aria-autocomplete": "list",
 			"aria-owns": this.ids.menu,
-			"aria-haspopup": "true"
+			"aria-haspopup": "true",
+			"aria-labelledby": this.label.uniqueId().attr( "id" )
 		})
 			.insertAfter( this.element );
 
@@ -547,7 +548,7 @@ return $.widget( "ui.selectmenu", {
 		this.button.remove();
 		this.element.show();
 		this.element.removeUniqueId();
-		this.label.attr( "for", this.ids.element );
+        this.label.removeUniqueId();
 	}
 });
 
